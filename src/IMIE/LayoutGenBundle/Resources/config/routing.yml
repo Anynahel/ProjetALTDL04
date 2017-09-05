@@ -1,0 +1,3 @@
+imie_layout_gen_homepage:
+    path:     /
+    defaults: { _controller: IMIELayoutGenBundle:Default:index }

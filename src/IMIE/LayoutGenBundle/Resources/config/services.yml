@@ -1,0 +1,4 @@
+services:
+#    imie_layout_gen.example:
+#        class: IMIE\LayoutGenBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
