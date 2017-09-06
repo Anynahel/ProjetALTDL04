@@ -1,3 +1,7 @@
 imie_admin_homepage:
     path:     /
     defaults: { _controller: IMIEAdminBundle:Default:index }
+
+imie_admin_login:
+    path:     /admin
+    defaults: { _controller: IMIEAdminBundle:Auth:index }
