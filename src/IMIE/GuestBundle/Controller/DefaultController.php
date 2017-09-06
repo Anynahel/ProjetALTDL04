@@ -32,7 +32,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/formation/{id}", name="liste_formations", requirements={"id": "\d+"})
+     * @Route("/formation/{id}", name="detail_formations", requirements={"id": "\d+"})
      */
     public function formationAction($id)
     {
@@ -40,11 +40,26 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/formations", name="detail_formation")
+     * @Route("/formations", name="liste_formation")
      */
     public function liste_formationsAction()
     {
         return $this->render('IMIEGuestBundle:Products:index.html.twig');
     }
+
+    /**
+     * @Route("/achat/{id}", name="achat", requirements={"id": "\d+"})
+     */
+    public function indexAction($id)
+    {
+        return $this->render('IMIEGuestBundle:Buy:index.html.twig');
+    }  
     
+    /**
+     * @Route("/merci", name="merci")
+     */
+    public function thanksAction()
+    {
+        return $this->render('IMIEGuestBundle:Buy:thanks.html.twig');
+    }
 }
