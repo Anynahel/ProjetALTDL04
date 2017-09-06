@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new IMIE\LayoutGenBundle\IMIELayoutGenBundle(),
             new IMIE\AdminBundle\IMIEAdminBundle(),
+            new IMIE\CustomerBundle\IMIECustomerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

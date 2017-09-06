@@ -1,3 +1,8 @@
+imie_customer:
+    resource: "@IMIECustomerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 imie_admin:
     resource: "@IMIEAdminBundle/Resources/config/routing.yml"
     prefix:   /
