@@ -59,6 +59,12 @@ class Product
      */
     private $idUser;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="istutorial", type="boolean", nullable=false, options={"default"=0})
+     */
+    private $isTutorial;
 
 }
 
