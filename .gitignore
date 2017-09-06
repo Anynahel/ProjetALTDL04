@@ -15,3 +15,6 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/nbproject/private/
+nbproject/project.xml
+nbproject/project.properties
