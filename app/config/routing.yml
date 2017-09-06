@@ -1,6 +1,6 @@
 imie_guest:
-    resource: "@IMIEGuestBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: '@IMIEGuestBundle/Controller/'
+    type: annotation
 
 app:
     resource: '@AppBundle/Controller/'
