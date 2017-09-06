@@ -1,3 +1,11 @@
+imie_admin:
+    resource: "@IMIEAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+imie_layout_gen:
+    resource: "@IMIELayoutGenBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

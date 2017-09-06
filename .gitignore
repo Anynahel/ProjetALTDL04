@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /.web-server-pid
 /app/config/parameters.yml
 /build/
@@ -18,3 +19,23 @@
 /nbproject/private/
 nbproject/project.xml
 nbproject/project.properties
+=======
+.idea
+/.web-server-pid
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/
+>>>>>>> 804706acb032f41feefb32707bb10f184a5ee890
