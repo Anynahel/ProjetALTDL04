@@ -5,7 +5,7 @@ namespace IMIE\GuestBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\httpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -18,11 +18,11 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/tutoriel/{id}", name="detail_tutoriel")
+     * @Route("/tutoriel/{id}", name="detail_tutoriel", requirements={"id": "\d+"})
      */
-    public function tutorielAction($id)
+    public function tutorielAction(Request $request)
     {
-        return $this->render('IMIEGuestBundle:Tutoriels:detail.html.twig');
+        return $this->render('IMIEGuestBundle:Tutoriels:detail.html.twig',['id'=>$request->get('id')]);
     }
     
     /**
@@ -34,11 +34,11 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/formation/{param}", name="detail_formations", requirements={"param": "\d+"})
+     * @Route("/formation/{id}", name="detail_formations", requirements={"id": "\d+"})
      */
-    public function formationAction()
+    public function formationAction(Request $request)
     {   
-        return $this->render('IMIEGuestBundle:Products:detail.html.twig');
+        return $this->render('IMIEGuestBundle:Products:detail.html.twig',['id'=>$request->get('id')]);
     }
     
     /**
@@ -52,9 +52,9 @@ class DefaultController extends Controller
     /**
      * @Route("/achat/{id}", name="achat", requirements={"id": "\d+"})
      */
-    public function indexAction($id)
+    public function indexAction(Request $request)
     {
-        return $this->render('IMIEGuestBundle:Buy:index.html.twig');
+        return $this->render('IMIEGuestBundle:Buy:index.html.twig',['id'=>$request->get('id')]);
     }  
     
     /**
