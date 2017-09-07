@@ -1,0 +1,26 @@
+# imie_admin_products_list:
+#     path:     /acces_liste_produits_crees
+#     defaults: { _controller: IMIEAdminBundle:Admin:productsList }
+
+# imie_admin_create_products:
+#     path:     /acces_liste_produits_crees/creer_produit
+#     defaults: { _controller: IMIEAdminBundle:Admin:createProducts }
+
+# imie_admin_modify_products:
+#     path:     /acces_liste_produits_crees/modifier_produit
+#     defaults: { _controller: IMIEAdminBundle:Admin:modifyProducts }
+
+# imie_admin_content_list:
+#     path:     /acces_liste_contenu_crees
+#     defaults: { _controller: IMIEAdminBundle:Admin:contentList }
+
+# imie_admin_create_content:
+#     path:     /acces_liste_contenu_crees/creer_contenu
+#     defaults: { _controller: IMIEAdminBundle:Admin:createContent }
+
+# imie_admin_modify_content:
+#     path:     /acces_liste_contenu_crees/modifier_contenu
+#     defaults: { _controller: IMIEAdminBundle:Admin:modifyContent }
+imie_homepage:
+    path: /
+    defaults: {_controller: IMIEBundle:Default:index}

@@ -1,16 +1,18 @@
+# imie_customer:
+#     resource: "@IMIECustomerBundle/Controller/"
+#     type:     annotation
+#     prefix:   /
 
-imie_customer:
-    resource: "@IMIECustomerBundle/Controller/"
-    type:     annotation
-    prefix:   /
+# imie_admin:
+#     resource: "@IMIEAdminBundle/Controller/"
+#     type:     annotation
+#     prefix:   /
 
-imie_admin:
-    resource: "@IMIEAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-imie_guest:
-    resource: '@IMIEGuestBundle/Controller/'
+# imie_guest:
+#     resource: '@IMIEGuestBundle/Controller/'
+#     type: annotation
+imie_homepage:
+    resource: '@IMIEBundle/Controller/'
     type: annotation
 
 app:

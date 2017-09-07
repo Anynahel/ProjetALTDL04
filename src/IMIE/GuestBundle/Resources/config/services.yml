@@ -1,4 +1,0 @@
-services:
-#    imie_guest.example:
-#        class: IMIE\GuestBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
