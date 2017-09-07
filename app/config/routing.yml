@@ -1,3 +1,4 @@
+
 imie_customer:
     resource: "@IMIECustomerBundle/Controller/"
     type:     annotation
@@ -7,3 +8,11 @@ imie_admin:
     resource: "@IMIEAdminBundle/Controller/"
     type:     annotation
     prefix:   /
+
+imie_guest:
+    resource: '@IMIEGuestBundle/Controller/'
+    type: annotation
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

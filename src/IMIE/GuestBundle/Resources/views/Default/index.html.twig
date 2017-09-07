@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Accueil{% endblock %}
+
+{% block body %} <content>
+<p>Content </p>
+<textarea name="editor1"></textarea>
+<script>
+	CKEDITOR.replace( 'editor1' );
+</script>				
+</content>{% endblock %}

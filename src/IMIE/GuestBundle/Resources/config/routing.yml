@@ -1,0 +1,3 @@
+imie_guest_homepage:
+    path:     /
+    defaults: { _controller: IMIEGuestBundle:Default:index }
