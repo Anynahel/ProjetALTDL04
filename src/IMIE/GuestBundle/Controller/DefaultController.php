@@ -3,7 +3,9 @@
 namespace IMIE\GuestBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\httpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -32,10 +34,10 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/formation/{id}", name="detail_formations", requirements={"id": "\d+"})
+     * @Route("/formation/{param}", name="detail_formations", requirements={"param": "\d+"})
      */
-    public function formationAction($id)
-    {
+    public function formationAction()
+    {   
         return $this->render('IMIEGuestBundle:Products:detail.html.twig');
     }
     
