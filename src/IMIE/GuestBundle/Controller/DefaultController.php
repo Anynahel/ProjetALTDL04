@@ -5,6 +5,7 @@ namespace IMIE\GuestBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -54,7 +55,17 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('IMIEGuestBundle:Buy:index.html.twig',['id'=>$request->get('id')]);
+        
+    $form = $this->createFormBuilder()
+    ->add('firstname', TextType::class)
+    ->add('lastname', TextType::class)
+    ->getForm()
+     ;
+  
+    return $this->render('IMIEGuestBundle:Buy:index.html.twig', [
+        'id'=>$request->get('id'),
+        'formulaire'=>$form->createView()            
+    ]);
     }  
     
     /**
