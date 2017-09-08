@@ -101,6 +101,33 @@ class User
      */
     private $idRole;
 
+    //Login Getters and Setters
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail() {
+
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getPassword() {
+
+    }
+
+    public function setPassword() {
+
+    }
 
 }
 
