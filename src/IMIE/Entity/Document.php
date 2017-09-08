@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 
 namespace IMIE\Entity;
