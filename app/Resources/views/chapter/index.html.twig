@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Chapters list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Content</th>
+                <th>Chaptertitle</th>
+                <th>Chapternumber</th>
+                <th>Idchapter</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chapter in chapters %}
+            <tr>
+                <td><a href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">{{ chapter.content }}</a></td>
+                <td>{{ chapter.chapterTitle }}</td>
+                <td>{{ chapter.chapterNumber }}</td>
+                <td>{{ chapter.idChapter }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('chapter_new') }}">Create a new chapter</a>
+        </li>
+    </ul>
+{% endblock %}

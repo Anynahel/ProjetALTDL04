@@ -13,6 +13,189 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdditionalAddress()
+    {
+        return $this->additionalAddress;
+    }
+
+    /**
+     * @param string $additionalAddress
+     */
+    public function setAdditionalAddress($additionalAddress)
+    {
+        $this->additionalAddress = $additionalAddress;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param string $zipCode
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->zipCode = $zipCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeactivationDate()
+    {
+        return $this->deactivationDate;
+    }
+
+    /**
+     * @param string $deactivationDate
+     */
+    public function setDeactivationDate($deactivationDate)
+    {
+        $this->deactivationDate = $deactivationDate;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }    
+
+    /**
+     * @return Role
+     */
+    public function getIdRole()
+    {
+        return $this->idRole;
+    }
+
+    /**
+     * @param Role $idRole
+     */
+    public function setIdRole($idRole)
+    {
+        $this->idRole = $idRole;
+    }
+    /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=80, nullable=false)

@@ -11,8 +11,23 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class DocumentType
-{
-    /**
+{    function getLabel() {
+        return $this->label;
+    }
+
+    function getIdDocumentType() {
+        return $this->idDocumentType;
+    }
+
+    function setLabel($label) {
+        $this->label = $label;
+    }
+
+    function setIdDocumentType($idDocumentType) {
+        $this->idDocumentType = $idDocumentType;
+    }
+
+        /**
      * @var string
      *
      * @ORM\Column(name="label", type="string", length=100, nullable=false)

@@ -11,8 +11,63 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Product
-{
-    /**
+{    function getImage() {
+        return $this->image;
+    }
+
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getSummary() {
+        return $this->summary;
+    }
+
+    function getKeywords() {
+        return $this->keywords;
+    }
+
+    function getIdProduct() {
+        return $this->idProduct;
+    }
+
+    function getIdUser(): \IMIE\Entity\User {
+        return $this->idUser;
+    }
+
+    function getIsTutorial() {
+        return $this->isTutorial;
+    }
+
+    function setImage($image) {
+        $this->image = $image;
+    }
+
+    function setTitle($title) {
+        $this->title = $title;
+    }
+
+    function setSummary($summary) {
+        $this->summary = $summary;
+    }
+
+    function setKeywords($keywords) {
+        $this->keywords = $keywords;
+    }
+
+    function setIdProduct($idProduct) {
+        $this->idProduct = $idProduct;
+    }
+
+    function setIdUser(\IMIE\Entity\User $idUser) {
+        $this->idUser = $idUser;
+    }
+
+    function setIsTutorial($isTutorial) {
+        $this->isTutorial = $isTutorial;
+    }
+
+        /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
@@ -62,7 +117,7 @@ class Product
     /**
      * @var boolean
      *
-     * @ORM\Column(name="istutorial", type="boolean", nullable=false, options={"default"=0})
+     * @ORM\Column(name="istutorial", type="boolean", nullable=true, options={"default"=0})
      */
     private $isTutorial;
 

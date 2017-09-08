@@ -11,8 +11,47 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class ProductOrder
-{
-    /**
+{    function getDate() {
+        return $this->date;
+    }
+
+    function getPrice() {
+        return $this->price;
+    }
+
+    function getIdOrder() {
+        return $this->idOrder;
+    }
+
+    function getIdProduct(): \IMIE\Entity\Product {
+        return $this->idProduct;
+    }
+
+    function getIdUser(): \IMIE\Entity\User {
+        return $this->idUser;
+    }
+
+    function setDate($date) {
+        $this->date = $date;
+    }
+
+    function setPrice($price) {
+        $this->price = $price;
+    }
+
+    function setIdOrder($idOrder) {
+        $this->idOrder = $idOrder;
+    }
+
+    function setIdProduct(\IMIE\Entity\Product $idProduct) {
+        $this->idProduct = $idProduct;
+    }
+
+    function setIdUser(\IMIE\Entity\User $idUser) {
+        $this->idUser = $idUser;
+    }
+
+        /**
      * @var string
      *
      * @ORM\Column(name="date", type="string", length=19, nullable=false)
