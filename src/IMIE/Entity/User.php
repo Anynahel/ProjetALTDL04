@@ -1,3 +1,4 @@
+
 <?php
 
 namespace IMIE\Entity;
@@ -286,4 +287,3 @@ class User
 
 
 }
-

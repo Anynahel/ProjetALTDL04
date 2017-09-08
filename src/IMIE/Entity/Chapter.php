@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace IMIE\Entity;
@@ -111,4 +112,3 @@ class Chapter
         $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }
-

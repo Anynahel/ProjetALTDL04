@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace IMIE\Entity;
@@ -45,4 +46,3 @@ class DocumentType
 
 
 }
-

@@ -1,3 +1,4 @@
+
 <?php
 
 namespace IMIE\Entity;
@@ -122,4 +123,3 @@ class Product
     private $isTutorial;
 
 }
-
