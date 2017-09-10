@@ -11,8 +11,55 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Chapter
-{
-    /**
+{    function getContent() {
+        return $this->content;
+    }
+
+    function getChapterTitle() {
+        return $this->chapterTitle;
+    }
+
+    function getChapterNumber() {
+        return $this->chapterNumber;
+    }
+
+    function getIdChapter() {
+        return $this->idChapter;
+    }
+
+    function getIdProduct(): \IMIE\Entity\Product {
+        return $this->idProduct;
+    }
+
+    function getDocuments() {
+        return $this->documents;
+    }
+
+    function setContent($content) {
+        $this->content = $content;
+    }
+
+    function setChapterTitle($chapterTitle) {
+        $this->chapterTitle = $chapterTitle;
+    }
+
+    function setChapterNumber($chapterNumber) {
+        $this->chapterNumber = $chapterNumber;
+    }
+
+    function setIdChapter($idChapter) {
+        $this->idChapter = $idChapter;
+    }
+
+    function setIdProduct(\IMIE\Entity\Product $idProduct) {
+        $this->idProduct = $idProduct;
+    }
+
+    function setDocuments($documents) {
+        $this->documents = $documents;
+    }
+
+        /**
      * @var string
      *
      * @ORM\Column(name="content", type="text", length=65535, nullable=false)
@@ -64,4 +111,3 @@ class Chapter
         $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }
-

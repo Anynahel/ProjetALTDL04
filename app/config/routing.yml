@@ -11,6 +11,7 @@
 # imie_guest:
 #     resource: '@IMIEGuestBundle/Controller/'
 #     type: annotation
+
 imie_homepage:
     resource: '@IMIEBundle/Controller/'
     type: annotation

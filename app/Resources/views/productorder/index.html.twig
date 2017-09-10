@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Productorders list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Idorder</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for productorder in productorders %}
+            <tr>
+                <td><a href="{{ path('productorder_show', { 'idOrder': productorder.idOrder }) }}">{{ productorder.date }}</a></td>
+                <td>{{ productorder.price }}</td>
+                <td>{{ productorder.idOrder }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('productorder_show', { 'idOrder': productorder.idOrder }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('productorder_edit', { 'idOrder': productorder.idOrder }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('productorder_new') }}">Create a new productorder</a>
+        </li>
+    </ul>
+{% endblock %}
