@@ -11,68 +11,21 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Product
-{    function getImage() {
-        return $this->image;
-    }
-
-    function getTitle() {
-        return $this->title;
-    }
-
-    function getSummary() {
-        return $this->summary;
-    }
-
-    function getKeywords() {
-        return $this->keywords;
-    }
-
-    function getIdProduct() {
-        return $this->idProduct;
-    }
-
-    function getIdUser(): \IMIE\Entity\User {
-        return $this->idUser;
-    }
-
-    function getIsTutorial() {
-        return $this->isTutorial;
-    }
-
-    function setImage($image) {
-        $this->image = $image;
-    }
-
-    function setTitle($title) {
-        $this->title = $title;
-    }
-
-    function setSummary($summary) {
-        $this->summary = $summary;
-    }
-
-    function setKeywords($keywords) {
-        $this->keywords = $keywords;
-    }
-
-    function setIdProduct($idProduct) {
-        $this->idProduct = $idProduct;
-    }
-
-    function setIdUser(\IMIE\Entity\User $idUser) {
-        $this->idUser = $idUser;
-    }
-
-    function setIsTutorial($isTutorial) {
-        $this->isTutorial = $isTutorial;
-    }
-
-        /**
+{   
+    /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image = '';
+
+    function getImage() {
+        return $this->image;
+    }
+
+    function setImage($image) {
+        $this->image = $image;
+    }
 
     /**
      * @var string
@@ -81,6 +34,14 @@ class Product
      */
     private $title;
 
+    function getTitle() {
+        return $this->title;
+    }
+
+    function setTitle($title) {
+        $this->title = $title;
+    }
+    
     /**
      * @var string
      *
@@ -88,12 +49,29 @@ class Product
      */
     private $summary;
 
+    function getSummary() {
+        return $this->summary;
+    }
+
+    function setSummary($summary) {
+        $this->summary = $summary;
+    }
+
+    
     /**
      * @var string
      *
      * @ORM\Column(name="keywords", type="string", length=255, nullable=true)
      */
     private $keywords = '';
+
+    function getKeywords() {
+        return $this->keywords;
+    }
+
+    function setKeywords($keywords) {
+        $this->keywords = $keywords;
+    }
 
     /**
      * @var integer
@@ -104,6 +82,15 @@ class Product
      */
     private $idProduct;
 
+    function getIdProduct() {
+        return $this->idProduct;
+    }
+
+    function setIdProduct($idProduct) {
+        $this->idProduct = $idProduct;
+    }
+
+    
     /**
      * @var \IMIE\Entity\User
      *
@@ -114,6 +101,14 @@ class Product
      */
     private $idUser;
 
+    function getIdUser(): \IMIE\Entity\User {
+        return $this->idUser;
+    }
+
+    function setIdUser(\IMIE\Entity\User $idUser) {
+        $this->idUser = $idUser;
+    }
+
     /**
      * @var boolean
      *
@@ -121,4 +116,11 @@ class Product
      */
     private $isTutorial;
 
+    function getIsTutorial() {
+        return $this->isTutorial;
+    }
+
+    function setIsTutorial($isTutorial) {
+        $this->isTutorial = $isTutorial;
+    }
 }

@@ -16,6 +16,9 @@
     },
     "require": {
         "php": ">=7.0.1",
+        "ckeditor/ckeditor": "^4.7",
+        "components/font-awesome": "^4.7",
+        "components/jquery": "^3.2",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",

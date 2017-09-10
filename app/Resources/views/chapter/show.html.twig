@@ -1,39 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Chapter</h1>
+    <h1>Chapitre</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Content</th>
-                <td>{{ chapter.content }}</td>
-            </tr>
-            <tr>
-                <th>Chaptertitle</th>
-                <td>{{ chapter.chapterTitle }}</td>
-            </tr>
-            <tr>
-                <th>Chapternumber</th>
+                <th>Numéro du chapitre</th>
                 <td>{{ chapter.chapterNumber }}</td>
             </tr>
             <tr>
-                <th>Idchapter</th>
-                <td>{{ chapter.idChapter }}</td>
+                <th>Titre</th>
+                <td>{{ chapter.chapterTitle }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ chapter.content }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('chapter_index') }}">Back to the list</a>
+            <a href="{{ path('chapter_index') }}">Retour</a>
         </li>
         <li>
-            <a href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Edit</a>
+            <a href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Éditer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

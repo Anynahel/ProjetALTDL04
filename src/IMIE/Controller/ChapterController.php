@@ -6,6 +6,9 @@ use IMIE\Entity\Chapter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -41,7 +44,17 @@ class ChapterController extends Controller
     public function newAction(Request $request)
     {
         $chapter = new Chapter();
-        $form = $this->createForm('IMIE\Form\ChapterType', $chapter);
+        $form = $this->createFormBuilder($chapter)
+                ->add('chapter_number', IntegerType::class, array(
+                    'required' => true,
+                    'label' => 'Numéro de chapitre'))
+                ->add('chapter_title', TextType::class, array(
+                    'required' => true,
+                    'label' => 'Titre'))
+                ->add('content', TextareaType::class, array(
+                    'required' => true,
+                    'label' => 'Contenu'))
+                ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,7 +96,17 @@ class ChapterController extends Controller
     public function editAction(Request $request, Chapter $chapter)
     {
         $deleteForm = $this->createDeleteForm($chapter);
-        $editForm = $this->createForm('IMIE\Form\ChapterType', $chapter);
+        $editForm = $this->createFormBuilder($chapter)
+                ->add('content', TextareaType::class, array(
+                    'required' => true,
+                    'label' => 'Contenu'))
+                ->add('chapter_title', TextType::class, array(
+                    'required' => true,
+                    'label' => 'Titre'))
+                ->add('chapter_number', IntegerType::class, array(
+                    'required' => true,
+                    'label' => 'Numéro de chapitre'))
+                ->getForm();
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

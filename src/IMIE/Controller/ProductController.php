@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProductController extends Controller
 {
     /**
-     * Lists all product entities.
+     * List all product entities.
      *
      * @Route("/", name="product_index")
      * @Method("GET")
@@ -45,11 +45,21 @@ class ProductController extends Controller
     {
         $product = new Product();
         $form = $this->createFormBuilder($product)
-                ->add('image', TextType::class)
-                ->add('title', TextType::class)
-                ->add('summary', TextareaType::class)
-                ->add('keywords', TextType::class)
-                ->add('istutorial', TextType::class)
+                ->add('image', TextType::class, array(
+                    'required' => true,
+                    'label' => 'Image'))
+                ->add('title', TextType::class, array(
+                    'required'=> true,
+                    'label' => 'Titre'))
+                ->add('summary', TextareaType::class, array(
+                    'required'=> true,
+                    'label' => 'Sommaire'))
+                ->add('keywords', TextType::class, array(
+                    'required'=> false,
+                    'label' => 'Mots clés'))
+                ->add('istutorial', CheckboxType::class, array(
+                    'required'=> false,
+                    'label' => 'Est-ce un tutoriel ? '))
                 ->getForm();
         $form->handleRequest($request);
 
@@ -93,11 +103,21 @@ class ProductController extends Controller
     {
         $deleteForm = $this->createDeleteForm($product);
         $editForm = $this->createFormBuilder($product)
-                ->add('image', TextType::class)
-                ->add('title', TextType::class)
-                ->add('summary', TextareaType::class)
-                ->add('keywords', TextType::class)
-                ->add('istutorial', CheckboxType::class)
+                ->add('image', TextType::class, array(
+                    'required'=> true,
+                    'label' => 'Image'))
+                ->add('title', TextType::class, array(
+                    'required'=> true,
+                    'label' => 'Titre'))
+                ->add('summary', TextareaType::class, array(
+                    'required'=> true,
+                    'label' => 'Sommaire'))
+                ->add('keywords', TextType::class, array(
+                    'required'=> false,
+                    'label' => 'Mots clés'))
+                ->add('istutorial', CheckboxType::class, array(
+                    'required'=> false,
+                    'label' => 'Est-ce un tutoriel ?'))
                 ->getForm();
         $editForm->handleRequest($request);
 

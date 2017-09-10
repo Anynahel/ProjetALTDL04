@@ -1,47 +1,50 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Product</h1>
+    <h1>Détail du produit</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Image</th>
-                <td>{{ product.image }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ product.title }}</td>
             </tr>
             <tr>
-                <th>Summary</th>
+                <th>Image</th>
+                <td>{{ product.image }}</td>
+            </tr>
+            
+            <tr>
+                <th>Sommaire</th>
                 <td>{{ product.summary }}</td>
             </tr>
             <tr>
-                <th>Keywords</th>
+                <th>Mots clés</th>
                 <td>{{ product.keywords }}</td>
             </tr>
             <tr>
-                <th>Idproduct</th>
-                <td>{{ product.idProduct }}</td>
-            </tr>
-            <tr>
-                <th>Istutorial</th>
-                <td>{% if product.isTutorial %}Yes{% else %}No{% endif %}</td>
+                <th>Tutoriel</th>
+                <td>{% if product.isTutorial %}Oui{% else %}Non{% endif %}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
+    {% if product.isTutorial %}
+    {% else %}
         <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
+            <a href="{{ path('chapter_new') }}">Créer un chapitre pour ce cours</a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="{{ path('product_index') }}">Retour</a>
         </li>
         <li>
-            <a href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}">Edit</a>
+            <a href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}">Éditer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
