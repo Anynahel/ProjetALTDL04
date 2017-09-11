@@ -1,0 +1,115 @@
+/* Color code */ 
+/*
+#e8eef7 : ClearBlue;
+#77adff : sky blue;
+#264370 : dark blue;
+#419ea3 : Dark green;
+#55bf94: light green;
+*/
+
+/* General changes */
+nav {
+	background-color: #264370;
+	color: white;
+	height: 5%;
+}
+
+body {
+	background-color: #e8eef7;
+}
+
+footer {
+	position: absolute;
+ 	right: 0;
+ 	bottom: 0;
+ 	left: 0;
+ 	padding: 1rem;
+ 	background-color: #264370;
+ 	text-align: center;
+ 	color: white;
+}
+
+li{
+	list-style: none;
+}
+
+/* TODO ! JB, 11/09/17 : Create class="actionLink" for action a*/
+/* unvisited link */
+.actionLink:link {
+    color: black;
+    text-decoration: none;
+}
+
+/* visited link */
+.actionLink:visited {
+    color: black;
+    text-decoration: none;
+}
+
+/* mouse over link */
+.actionLink:hover {
+    color: #264370;
+    text-decoration: none;
+}
+
+/* selected link */
+.actionLink:active {
+    color: #264370;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Particular changes */
+/* Navigation Links behavior */
+/* unvisited link */
+.navLink:link {
+    color: white;
+    text-decoration: none;
+}
+
+/* visited link */
+.navLink:visited {
+    color: white;
+    text-decoration: none;
+}
+
+/* mouse over link */
+.navLink:hover {
+    color: #55bf94;
+    text-decoration: none;
+}
+
+/* selected link */
+.navLink:active {
+    color: #77adff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.active{
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 30px;
+}
+
+#LogButton {
+	background-color: #419ea3;
+	color: #e8eef7;
+	margin: 5%;
+}
+
+#searchFaIcon {
+	color: #419ea3;
+}
+
+#searchButton{
+	border-color: #419ea3;
+}
+
+.footerLabel{
+	text-align: center;
+	font-weight: bold;
+}
+
+.footerUl{
+	text-align: center;
+}
