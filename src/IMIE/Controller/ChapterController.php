@@ -33,7 +33,7 @@ class ChapterController extends Controller
 
         return $this->render('chapter/index.html.twig', array(
             'chapters' => $chapters,
-        ));
+            ));
     }
 
     /**
@@ -44,32 +44,47 @@ class ChapterController extends Controller
      */
     public function newAction(Request $request)
     {
-        $chapter = new Chapter();
-        $form = $this->createFormBuilder($chapter)
-                ->add('chapter_number', IntegerType::class, array(
-                    'required' => true,
-                    'label' => 'Numéro de chapitre'))
-                ->add('chapter_title', TextType::class, array(
-                    'required' => true,
-                    'label' => 'Titre'))
-                ->add('content', TextareaType::class, array(
-                    'required' => true,
-                    'label' => 'Contenu'))
-                ->getForm();
-        $form->handleRequest($request);
+        if(isset($_GET['idProd']))
+        {
+            $chapter = new Chapter();
+            $form = $this->createFormBuilder($chapter)
+            ->add('chapter_number', IntegerType::class, array(
+                'required' => true,
+                'label' => 'Numéro de chapitre'))
+            ->add('chapter_title', TextType::class, array(
+                'required' => true,
+                'label' => 'Titre'))
+            ->add('content', TextareaType::class, array(
+                'required' => true,
+                'label' => 'Contenu'))
+            ->getForm();
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($chapter);
-            $em->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($chapter);
+                $em->flush();
 
-            return $this->redirectToRoute('chapter_show', array('idChapter' => $chapter->getIdchapter()));
+                return $this->redirectToRoute('chapter_show', array('idChapter' => $chapter->getIdchapter()));
+            }
+
+
+            return $this->render('chapter/new.html.twig', array(
+                'chapter' => $chapter,
+                'idProd' => $_GET['idProd'],
+                'form' => $form->createView(),
+                ));
         }
+        else
+        {
+            $em = $this->getDoctrine()->getManager();
 
-        return $this->render('chapter/new.html.twig', array(
-            'chapter' => $chapter,
-            'form' => $form->createView(),
-        ));
+            $products = $em->getRepository('IMIEBundle:Product')->findAll();
+
+            return $this->render('product/index.html.twig', array(
+                'products' => $products,
+                ));
+        }
     }
 
     /**
@@ -85,7 +100,7 @@ class ChapterController extends Controller
         return $this->render('chapter/show.html.twig', array(
             'chapter' => $chapter,
             'delete_form' => $deleteForm->createView(),
-        ));
+            ));
     }
 
     /**
@@ -98,16 +113,16 @@ class ChapterController extends Controller
     {
         $deleteForm = $this->createDeleteForm($chapter);
         $editForm = $this->createFormBuilder($chapter)
-                ->add('content', TextareaType::class, array(
-                    'required' => true,
-                    'label' => 'Contenu'))
-                ->add('chapter_title', TextType::class, array(
-                    'required' => true,
-                    'label' => 'Titre'))
-                ->add('chapter_number', IntegerType::class, array(
-                    'required' => true,
-                    'label' => 'Numéro de chapitre'))
-                ->getForm();
+        ->add('content', TextareaType::class, array(
+            'required' => true,
+            'label' => 'Contenu'))
+        ->add('chapter_title', TextType::class, array(
+            'required' => true,
+            'label' => 'Titre'))
+        ->add('chapter_number', IntegerType::class, array(
+            'required' => true,
+            'label' => 'Numéro de chapitre'))
+        ->getForm();
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -120,7 +135,7 @@ class ChapterController extends Controller
             'chapter' => $chapter,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+            ));
     }
 
     /**
@@ -153,9 +168,9 @@ class ChapterController extends Controller
     private function createDeleteForm(Chapter $chapter)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('chapter_delete', array('idChapter' => $chapter->getIdchapter())))
-            ->setMethod('DELETE')
-            ->getForm()
+        ->setAction($this->generateUrl('chapter_delete', array('idChapter' => $chapter->getIdchapter())))
+        ->setMethod('DELETE')
+        ->getForm()
         ;
     }
 }
