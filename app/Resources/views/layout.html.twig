@@ -28,33 +28,32 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg">
-            <img id="logo" src="{{ asset('assets/img/logo_imie_formation.svg') }}" height="150" width="150">
+            <a href="{{ path('accueil') }}"><img id="logo" src="{{ asset('assets/img/logo_imie_formation.svg') }}" height="125" width="125"/></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fa fa-bars" aria-hidden="true" id="barsFaIcons"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link navLink" href="#">Accueil</a>
+                    <a class="nav-link navLink" href="{{ path('product_index') }}">Les formations</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link navLink" href="{{ path('product_index') }}">Liste formations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link navLink disabled" href="#">Liste contenus</a>
+                        <a class="nav-link navLink disabled" href="#">Les articles de blog</a>
                     </li>
                 </ul>
-                <form class="form-inline">
-                    <input class="form-control" type="text" placeholder="Rechercher un cours" aria-label="Rechercher un cours">
-                    <button id="searchButton" class="btn btn-outline-success" type="submit"><i class="fa fa-search" id="searchFaIcon" aria-hidden="true"></i></button>
+                <form class="form-inline" action="{{ path('search_product') }}" method="GET">
+                    <input class="form-control" id="inputTitle" type="text" placeholder="Rechercher un cours" aria-label="Rechercher un cours" name="expression">
+                    <button id="searchButton" class="btn btn-outline-success" type="submit">
+                    <i class="fa fa-search" id="searchFaIcon" aria-hidden="true"></i>
+                    </button>
                 </form>
                 <div>
                 <button class="btn" id="LogButton">
                     {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('logout') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>Se déconnecter<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="actionLink" href="{{ path('logout') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>Se déconnecter<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     {% else %}
-                    <a href="{{ path('login') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>Se connecter<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="actionLink" href="{{ path('login') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>Se connecter<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     {% endif %}
                     </button>
                 </div>
@@ -62,11 +61,11 @@
 
         </nav>
     </header>
-</div>
 
+<div id="main">
 
 {% block body %}{% endblock %}
-
+</div>
 
 <footer>
     <div class="container">
@@ -88,10 +87,12 @@
         </div>
         <div class="col-md-4">
             <label class="footerLabel">Réseaux sociaux</label>
-            <ul class="footerUl">
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">Twitter</a></li>
-            </ul>
+
+            </br>
+            <div class="social">
+              <a href="https://www.facebook.com/IMIE.IT/" class="link facebook" target="_parent"><span class="fa fa-facebook-square"></span></a></li>
+<a href="https://twitter.com/ecoleimie" class="link twitter" target="_parent"><span class="fa fa-twitter"></span></a>
+            </div>
         </div>
     </div>
 </div>

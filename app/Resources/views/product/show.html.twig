@@ -36,28 +36,24 @@
         {% for chapter in chapters %}
             
             <p class="chapter">- 
-                <a href="{{ path('chapter_show', {'idChapter': chapter.idChapter}) }}">
+                <a class="actionLink" href="{{ path('chapter_show', {'idChapter': chapter.idChapter}) }}">
                    {{ chapter.ChapterNumber }} - {{ chapter.ChapterTitle }}</a>
             </p>
         {% endfor %}   
         <li>
-            <a href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}">Créer un chapitre pour ce cours</a>
+            <a class="actionLink" href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}">Créer un chapitre pour ce cours</a>
         </li> 
-        {#
-         <form action="{{ path('chapter_new',{'idProd': product.idProduct  })}}" method="post">
-            <button type="submit">Créer un chapitre pour ce cours</button>
-        </form> #}
 
         {% endif %}
         <li>
-            <a href="{{ path('product_index') }}">Retour</a>
+            <a class="actionLink" href="{{ path('product_index') }}">Retour</a>
         </li>
         <li>
-            <a href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}">Éditer</a>
+            <a class="actionLink" href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}">Éditer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+                <input class="actionLink" type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

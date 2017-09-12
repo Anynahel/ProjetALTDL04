@@ -22,14 +22,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('chapter_index') }}">Retour</a>
+            <a class="actionLink" href="{{ path('chapter_index') }}">Retour</a>
         </li>
         <li>
-            <a href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Éditer</a>
+            <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Éditer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+                <input class="actionLink" type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -6,12 +6,12 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Créer" />
+        <input class="actionLink" type="submit" value="Créer" />
     {{ form_end(form) }}
 </div>
     <ul>
         <li>
-            <a href="{{ path('chapter_index') }}">Retour</a>
+            <a class="actionLink" href="{{ path('chapter_index') }}">Retour</a>
         </li>
     </ul>
 {% endblock %}

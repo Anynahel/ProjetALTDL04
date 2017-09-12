@@ -22,13 +22,27 @@ class DefaultController extends Controller
      * @Method("GET")
      */
     public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $products = $em->getRepository('IMIEBundle:Product')->findAll();
+    {       
+        $lastProducts = $this->getDoctrine()->getRepository('IMIEBundle:Product')->findLast(3);
 
         return $this->render('default/index.html.twig', array(
-            'products' => $products,
+            'lastProducts' => $lastProducts,
         ));
     }
+
+    /**
+     * @Route("/search", name="search_product")
+     */
+    public function searchProductAction(Request $request) 
+    {        
+        
+        $expression = $request->query->get("expression");
+        $products =  $this->getDoctrine()->getRepository("IMIEBundle:Product")->findProduct($expression);
+        
+        return $this->render('product/index.html.twig', [
+                    "products" => $products
+        ]); 
+    }
+
+    
 }

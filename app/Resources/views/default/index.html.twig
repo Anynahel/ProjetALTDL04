@@ -2,7 +2,13 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %} 
-{% for product in products %}
-{{product.idProduct}}
+<h1>Récap' des cours les plus récents</h1>
+{% for product in lastProducts %}
+
+
+<span><a class="actionLink" href="{{ path('product_show', { 'idProduct': product.idProduct }) }}">{{ product.title }}</a></span>
+</br>
+<div class="container">{{product.summary}}</div>
+
 {% endfor%}
 {% endblock %}

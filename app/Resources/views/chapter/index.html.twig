@@ -14,15 +14,15 @@
         <tbody>
         {% for chapter in chapters %}
             <tr>
-                <td><a href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">{{ chapter.chapterNumber }}</a></td>
+                <td><a class="actionLink" href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">{{ chapter.chapterNumber }}</a></td>
                 <td>{{ chapter.chapterTitle }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">Détail</a>
+                            <a class="actionLink" href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">Détail</a>
                         </li>
                         <li>
-                            <a href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Éditer</a>
+                            <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Éditer</a>
                         </li>
                     </ul>
                 </td>
@@ -33,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('chapter_new') }}">Créer un nouveau chapitre</a>
+            <a class="actionLink" href="{{ path('chapter_new') }}">Créer un nouveau chapitre</a>
         </li>
     </ul>
 {% endblock %}
