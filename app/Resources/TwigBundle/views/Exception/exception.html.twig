@@ -1,0 +1,20 @@
+
+{% block body %}
+    <div>
+        <h2> <img id="logo" src="{{ asset('assets/img/logo_imie_formation.svg') }}" height="150" width="150">
+            Erreur dans l'application</h2>
+        <div >
+            <div id="container">
+                <h3>
+                    HTTP {{ status_code }} <small>{{ status_text }}</small>
+                </h3>
+                <div class="exception-message-wrapper">
+                    <a href="{{ path('homepage') }}">> Revenir à l'accueil</a>
+                </div>
+            </div>
+        </div>   
+        <img src="{{ asset('assets/img/lost.gif') }}" alt="vous êtes perdus">
+    </div>
+{% endblock %}
+
+
