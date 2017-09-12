@@ -35,7 +35,7 @@
         <h3>Chapitres du cours :</h3>
         {% for chapter in chapters %}
             
-            <p class="chapter">- 
+            <p class="chapter">
                 <a class="actionLink" href="{{ path('chapter_show', {'idChapter': chapter.idChapter}) }}">
                    {{ chapter.ChapterNumber }} - {{ chapter.ChapterTitle }}</a>
             </p>

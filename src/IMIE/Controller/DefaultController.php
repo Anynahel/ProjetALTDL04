@@ -43,6 +43,4 @@ class DefaultController extends Controller
                     "products" => $products
         ]); 
     }
-
-    
 }
