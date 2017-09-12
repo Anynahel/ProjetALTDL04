@@ -1,8 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Création d'un chapitre pour la formation n° {{ ProdName }}</h1>
-<div class="container">
+
+    <h1>Nouveau chapitre pour <strong>{{ ProdName }}</strong></h1>
+
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Créer" />

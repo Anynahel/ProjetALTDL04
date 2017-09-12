@@ -3,6 +3,7 @@
 namespace IMIE\Controller;
 
 use IMIE\Entity\Product;
+use IMIE\Entity\Chapter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -85,10 +86,16 @@ class ProductController extends Controller
      */
     public function showAction(Product $product)
     {
+        $em = $this->getDoctrine()->getManager();
+        $chapters = $em->getRepository('IMIEBundle:Chapter')->findBy(
+                array('Product' => $product->getIdProduct()
+                )
+        );
         $deleteForm = $this->createDeleteForm($product);
-
+//var_dump($chapters);die();
         return $this->render('product/show.html.twig', array(
             'product' => $product,
+            'chapters' => $chapters,
             'delete_form' => $deleteForm->createView(),
         ));
     }

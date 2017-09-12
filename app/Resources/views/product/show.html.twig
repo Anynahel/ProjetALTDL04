@@ -32,7 +32,14 @@
     <ul>
     {% if product.isTutorial %}
     {% else %}
-        
+        <h3>Chapitres du cours :</h3>
+        {% for chapter in chapters %}
+            
+            <p class="chapter">- 
+                <a href="{{ path('chapter_show', {'idChapter': chapter.idChapter}) }}">
+                   {{ chapter.ChapterNumber }} - {{ chapter.ChapterTitle }}</a>
+            </p>
+        {% endfor %}   
         <li>
             <a href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}">Créer un chapitre pour ce cours</a>
         </li> 
