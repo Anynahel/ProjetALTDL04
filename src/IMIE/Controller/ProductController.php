@@ -107,7 +107,6 @@ class ProductController extends Controller
                     'required'=> true,
                     'label' => 'Image'))
                 ->add('title', TextType::class, array(
-                    'name' => 'POUET',
                     'required'=> true,
                     'label' => 'Titre'))
                 ->add('summary', TextareaType::class, array(

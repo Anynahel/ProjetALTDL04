@@ -12,27 +12,31 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Role
 {    function getType() {
-        return $this->type;
+    $roles = $this->roles;
+    if (empty($roles)) {
+        $roles[] = 'ROLE_USER';
     }
+    return array_unique($type);
+}
 
-    function getIdRole() {
-        return $this->idRole;
-    }
+function getIdRole() {
+    return $this->idRole;
+}
 
-    function setType($type) {
-        $this->type = $type;
-    }
+function setType($type) {
+    $this->type = $type;
+}
 
-    function setIdRole($idRole) {
-        $this->idRole = $idRole;
-    }
+function setIdRole($idRole) {
+    $this->idRole = $idRole;
+}
 
         /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=100, nullable=false)
      */
-    private $type = '';
+        private $type = '';
 
     /**
      * @var integer

@@ -2,12 +2,12 @@
 
 {% block body %}
     <h1>Création d'un chapitre pour la formation n° {{ ProdName }}</h1>
-
+<div class="container">
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Créer" />
     {{ form_end(form) }}
-
+</div>
     <ul>
         <li>
             <a href="{{ path('chapter_index') }}">Retour</a>

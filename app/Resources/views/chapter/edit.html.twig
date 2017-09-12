@@ -2,12 +2,14 @@
 
 {% block body %}
     <h1>Éditer un chapitre</h1>
-
+<div class="container">
     {{ form_start(edit_form) }}
+
         {{ form_widget(edit_form) }}
+        
         <input type="submit" value="Éditer" />
     {{ form_end(edit_form) }}
-
+        </div>
     <ul>
         <li>
             <a href="{{ path('chapter_index') }}">Retour</a>

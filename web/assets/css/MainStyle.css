@@ -104,7 +104,14 @@ li{
 #searchButton{
 	border-color: #419ea3;
 }
-
+.navbar-toggler {
+    color: white;
+    border-color: white;
+}
+.navbar-toggler-icon{
+    color: white;
+    border-color: white;
+}
 .footerLabel{
 	text-align: center;
 	font-weight: bold;
