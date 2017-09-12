@@ -82,14 +82,14 @@ class Chapter
      *   @ORM\JoinColumn(name="id_product", referencedColumnName="id_product")
      * })
      */
-    private $idProduct;
+    private $Product;
 
-    function getIdProduct(): \IMIE\Entity\Product {
-        return $this->idProduct;
+    function getProduct(): \IMIE\Entity\Product {
+        return $this->Product;
     }
 
-    function setIdProduct(\IMIE\Entity\Product $idProduct) {
-        $this->idProduct = $idProduct;
+    function setProduct(\IMIE\Entity\Product $Product) {
+        $this->Product = $Product;
     }
 
     /**
