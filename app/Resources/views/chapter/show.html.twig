@@ -3,33 +3,27 @@
 {% block body %}
     <h1>Chapitre</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Numéro du chapitre</th>
-                <td>{{ chapter.chapterNumber }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ chapter.chapterTitle }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ chapter.content }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+<span>Numéro du chapitre</span>
+                <p>{{ chapter.chapterNumber }}</p>
+</br>
 
+                <span>Titre</span>
+                <p>{{ chapter.chapterTitle }}</p>
+</br>
+                <span>Contenu</span>
+                <p>{{ chapter.content }}</p>
+            </br>
     <ul>
         <li>
             <a class="actionLink" href="{{ path('chapter_index') }}">Retour</a>
         </li>
         <li>
-            <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Éditer</a>
+            <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}"><i class="fa fa-pencil"></i></a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input class="actionLink" type="submit" value="Supprimer">
+                <input class="actionLink" type="submit"><i class="fa fa-trash"></input>
             {{ form_end(delete_form) }}
         </li>
     </ul>

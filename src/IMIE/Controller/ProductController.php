@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -46,7 +47,8 @@ class ProductController extends Controller
     {
         $product = new Product();
         $form = $this->createFormBuilder($product)
-                ->add('image', TextType::class, array(
+
+                ->add('image', FileType::class, array(
                     'required' => true,
                     'label' => 'Image'))
                 ->add('title', TextType::class, array(
@@ -65,6 +67,14 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /* @var $file \Symfony\Component\HttpFoundation\File\UploadedFile */
+            $file = $product->getImage();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $directory=$this->getParameter('upload_dir');
+            $file->move($directory, $fileName);
+            $product->setImage($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
@@ -92,7 +102,7 @@ class ProductController extends Controller
                 )
         );
         $deleteForm = $this->createDeleteForm($product);
-//var_dump($chapters);die();
+
         return $this->render('product/show.html.twig', array(
             'product' => $product,
             'chapters' => $chapters,

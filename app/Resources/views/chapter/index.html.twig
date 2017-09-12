@@ -2,34 +2,43 @@
 
 {% block body %}
     <h1>Liste des chapitres</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+        Numéro de chapitre
+    </div>
+    <div class="col">
+        Titre
+    </div>
+    <div class="col">
+        Actions
+    </div>
+     <div class="w-100"></div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Numéro de chapitre</th>
-                <th>Titre</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for chapter in chapters %}
-            <tr>
-                <td><a class="actionLink" href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">{{ chapter.chapterNumber }}</a></td>
-                <td>{{ chapter.chapterTitle }}</td>
-                <td>
+        <div class="col">
+       <a class="actionLink" href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">{{ chapter.chapterNumber }}</a>
+         </div>
+
+    <div class="col">
+    {{ chapter.chapterTitle }}
+    </div>
+
+            <div class="col">
                     <ul>
                         <li>
-                            <a class="actionLink" href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}">Détail</a>
+                            <a class="actionLink" href="{{ path('chapter_show', { 'idChapter': chapter.idChapter }) }}"><i class="fa fa-info"></i></a>
                         </li>
                         <li>
-                            <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}">Éditer</a>
+                            <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}"><i class="fa fa-pencil"></i></a>
                         </li>
                     </ul>
-                </td>
-            </tr>
+                </div>
+            
+            <div class="w-100"></div>
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+        
 
     <ul>
         <li>

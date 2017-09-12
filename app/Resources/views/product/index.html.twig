@@ -3,43 +3,57 @@
 {% block body %}
     <h1>Liste des produits</h1>
 
-    <table>
-        <thead>
-            <tr>
-            <th>Titre</th>
-                <th>Image</th>
-                <th>Sommaire</th>
-                <th>Mots clés</th>
-                <th>Tutoriel</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td><a href="{{ path('product_show', { 'idProduct': product.idProduct }) }}">{{ product.title }}</a></td>
-                <td>{{ product.image }}</td>
-                <td>{{ product.summary }}</td>
-                <td>{{ product.keywords }}</td>
-                <td>{% if product.isTutorial %}Oui{% else %}Non{% endif %}</td>
-                <td>
-                    <ul>
+<div class="container">
+  <div class="row">
+    <div class="col">
+        Titre
+    </div>
+    <div class="col">
+        Image
+    </div>
+    <div class="col">
+        Mots clés
+    </div>
+    <div class="col">
+        Tutoriel
+    </div>
+    <div class="col">
+        Actions
+    </div>
+
+    <div class="w-100"></div>
+
+     {% for product in products %}
+     <div class="col">
+    <a class="actionLink" href="{{ path('product_show', { 'idProduct': product.idProduct }) }}">{{ product.title }}</a>
+    </div>
+         <div class="col">
+    <img src="{{ asset('uploads/')}}{{ product.image }}" height='100' width='100'/>
+    </div>
+         <div class="col">
+    {{ product.keywords }}
+    </div>
+         <div class="col">
+    {% if product.isTutorial %}Oui{% else %}Non{% endif %}
+    </div>
+         <div class="col">
+    <ul>
                         <li>
-                            <a href="{{ path('product_show', { 'idProduct': product.idProduct }) }}">Voir le détail</a>
+                            <a class="actionLink" href="{{ path('product_show', { 'idProduct': product.idProduct }) }}"><i class="fa fa-info"></i></a>
                         </li>
                         <li>
-                            <a href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}">Éditer</a>
+                            <a class="actionLink" href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}"><i class="fa fa-pencil"></i></a>
                         </li>
                     </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </div>
+    <div class="w-100"></div>
+    {% endfor %}
+  </div>
+</div>
 
     <ul>
         <li>
-            <a href="{{ path('product_new') }}">Créer un nouveau produit</a>
+            <a class="actionLink" href="{{ path('product_new') }}"><i class="fa fa-plus"></i></a>
         </li>
     </ul>
 {% endblock %}
