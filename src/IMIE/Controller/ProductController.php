@@ -46,9 +46,10 @@ class ProductController extends Controller
     {
         $product = new Product();
         $form = $this->createFormBuilder($product)
-                ->add('image', TextType::class, array(
+                ->add('image', FileType::class, array(
+                    'attr' => array('accept' => 'image/jpeg,image/png'),
                     'required' => true,
-                    'label' => 'Image'))
+                    'label' => 'Image de présentation (jpg, png)'))
                 ->add('title', TextType::class, array(
                     'required'=> true,
                     'label' => 'Titre'))
