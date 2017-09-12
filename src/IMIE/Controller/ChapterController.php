@@ -44,7 +44,7 @@ class ChapterController extends Controller
      */
     public function newAction(Request $request)
     {
-        if(isset($_GET['idProd']))
+        if(isset($_GET['idProd']) && isset($_GET['ProdName']))
         {
             $chapter = new Chapter();
             $form = $this->createFormBuilder($chapter)
@@ -72,6 +72,7 @@ class ChapterController extends Controller
             return $this->render('chapter/new.html.twig', array(
                 'chapter' => $chapter,
                 'idProd' => $_GET['idProd'],
+                'ProdName' =>$_GET['ProdName'],
                 'form' => $form->createView(),
                 ));
         }

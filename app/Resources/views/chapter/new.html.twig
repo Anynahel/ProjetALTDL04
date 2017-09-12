@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Création d'un chapitre pour la formation n° {{ idProd }}</h1>
+    <h1>Création d'un chapitre pour la formation n° {{ ProdName }}</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -13,4 +13,9 @@
             <a href="{{ path('chapter_index') }}">Retour</a>
         </li>
     </ul>
+{% endblock %}
+{% block javascripts %}
+<script>
+    CKEDITOR.replace( 'form[content]' );
+</script>  
 {% endblock %}

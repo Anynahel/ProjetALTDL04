@@ -5,6 +5,7 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+ 
         <input type="submit" value="Créer" />
     {{ form_end(form) }}
 
@@ -13,4 +14,9 @@
             <a href="{{ path('product_index') }}">Retour</a>
         </li>
     </ul>
+{% endblock %}
+{% block javascripts %}
+<script>
+    CKEDITOR.replace( 'form[summary]' );
+</script>  
 {% endblock %}

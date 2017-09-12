@@ -34,10 +34,10 @@
     {% else %}
         
         <li>
-            <a href="{{ path('chapter_new',{'idProd': product.idProduct }) }}">Créer un chapitre pour ce cours</a>
-        </li>
-        
-        {# <form action="{{ path('chapter_new',{'idProd': product.idProduct } )}}" method="post">
+            <a href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}">Créer un chapitre pour ce cours</a>
+        </li> 
+        {#
+         <form action="{{ path('chapter_new',{'idProd': product.idProduct  })}}" method="post">
             <button type="submit">Créer un chapitre pour ce cours</button>
         </form> #}
 
