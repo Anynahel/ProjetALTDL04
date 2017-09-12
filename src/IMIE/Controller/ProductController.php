@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -17,22 +18,21 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("product")
  */
-class ProductController extends Controller
-{
+class ProductController extends Controller {
+
     /**
      * List all product entities.
      *
      * @Route("/", name="product_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $products = $em->getRepository('IMIEBundle:Product')->findAll();
 
         return $this->render('product/index.html.twig', array(
-            'products' => $products,
+                    'products' => $products,
         ));
     }
 
@@ -42,29 +42,38 @@ class ProductController extends Controller
      * @Route("/new", name="product_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $product = new Product();
         $form = $this->createFormBuilder($product)
-                ->add('image', TextType::class, array(
+                ->add('image', FileType::class, array(
                     'required' => true,
-                    'label' => 'Image'))
+                    'label' => 'Image de présentation (jpg, png'))
                 ->add('title', TextType::class, array(
-                    'required'=> true,
-                    'label' => 'Titre'))
+                    'required' => true,
+                    'label' => 'Titre du cours'))
                 ->add('summary', TextareaType::class, array(
-                    'required'=> true,
-                    'label' => 'Sommaire'))
+                    'required' => true,
+                    'label' => 'Sommaire du cours'))
                 ->add('keywords', TextType::class, array(
-                    'required'=> false,
-                    'label' => 'Mots clés'))
+                    'required' => false,
+                    'label' => 'Mots clés (séparés par une virgule)'))
                 ->add('istutorial', CheckboxType::class, array(
-                    'required'=> false,
+                    'required' => false,
                     'label' => 'Est-ce un tutoriel ? '))
                 ->getForm();
         $form->handleRequest($request);
 
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            /* @var $file \Symfony\Component\HttpFoundation\File\UploadedFile */
+            $file = $product->getImage();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $directory=$this->getParameter('upload_dir');
+            $file->move($directory, $fileName);
+            $product->setImage($fileName);
+            
+           
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
@@ -73,8 +82,8 @@ class ProductController extends Controller
         }
 
         return $this->render('product/new.html.twig', array(
-            'product' => $product,
-            'form' => $form->createView(),
+                    'product' => $product,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -84,19 +93,17 @@ class ProductController extends Controller
      * @Route("/{idProduct}", name="product_show")
      * @Method("GET")
      */
-    public function showAction(Product $product)
-    {
+    public function showAction(Product $product) {
         $em = $this->getDoctrine()->getManager();
         $chapters = $em->getRepository('IMIEBundle:Chapter')->findBy(
                 array('Product' => $product->getIdProduct()
                 )
         );
         $deleteForm = $this->createDeleteForm($product);
-//var_dump($chapters);die();
         return $this->render('product/show.html.twig', array(
-            'product' => $product,
-            'chapters' => $chapters,
-            'delete_form' => $deleteForm->createView(),
+                    'product' => $product,
+                    'chapters' => $chapters,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -106,24 +113,23 @@ class ProductController extends Controller
      * @Route("/{idProduct}/edit", name="product_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Product $product)
-    {
+    public function editAction(Request $request, Product $product) {
         $deleteForm = $this->createDeleteForm($product);
         $editForm = $this->createFormBuilder($product)
                 ->add('image', TextType::class, array(
-                    'required'=> true,
+                    'required' => true,
                     'label' => 'Image'))
                 ->add('title', TextType::class, array(
-                    'required'=> true,
+                    'required' => true,
                     'label' => 'Titre'))
                 ->add('summary', TextareaType::class, array(
-                    'required'=> true,
+                    'required' => true,
                     'label' => 'Sommaire'))
                 ->add('keywords', TextType::class, array(
-                    'required'=> false,
+                    'required' => false,
                     'label' => 'Mots clés'))
                 ->add('istutorial', CheckboxType::class, array(
-                    'required'=> false,
+                    'required' => false,
                     'label' => 'Est-ce un tutoriel ?'))
                 ->getForm();
         $editForm->handleRequest($request);
@@ -135,9 +141,9 @@ class ProductController extends Controller
         }
 
         return $this->render('product/edit.html.twig', array(
-            'product' => $product,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'product' => $product,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -147,8 +153,7 @@ class ProductController extends Controller
      * @Route("/{idProduct}", name="product_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Product $product)
-    {
+    public function deleteAction(Request $request, Product $product) {
         $form = $this->createDeleteForm($product);
         $form->handleRequest($request);
 
@@ -168,12 +173,12 @@ class ProductController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Product $product)
-    {
+    private function createDeleteForm(Product $product) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('product_delete', array('idProduct' => $product->getIdproduct())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('product_delete', array('idProduct' => $product->getIdproduct())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
