@@ -1,13 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
+
     <h1>Nouveau chapitre pour <strong>{{ ProdName }}</strong></h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Créer" />
     {{ form_end(form) }}
-
+</div>
     <ul>
         <li>
             <a href="{{ path('chapter_index') }}">Retour</a>

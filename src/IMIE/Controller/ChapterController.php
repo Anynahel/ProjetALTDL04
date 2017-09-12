@@ -114,15 +114,15 @@ class ChapterController extends Controller
     {
         $deleteForm = $this->createDeleteForm($chapter);
         $editForm = $this->createFormBuilder($chapter)
-        ->add('content', TextareaType::class, array(
-            'required' => true,
-            'label' => 'Contenu'))
-        ->add('chapter_title', TextType::class, array(
-            'required' => true,
-            'label' => 'Titre'))
         ->add('chapter_number', IntegerType::class, array(
             'required' => true,
             'label' => 'Numéro de chapitre'))
+        ->add('chapter_title', TextType::class, array(
+            'required' => true,
+            'label' => 'Titre'))
+        ->add('content', TextareaType::class, array(
+            'required' => true,
+            'label' => 'Contenu'))       
         ->getForm();
         $editForm->handleRequest($request);
 

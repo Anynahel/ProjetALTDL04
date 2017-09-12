@@ -1,0 +1,34 @@
+<?php
+
+namespace IMIE\Controller;
+
+use IMIE\Entity\Product;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Product controller.
+ *
+ * @Route("/")
+ */
+class DefaultController extends Controller
+{
+    /**
+     * List all product entities.
+     *
+     * @Route("/", name="accueil")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $products = $em->getRepository('IMIEBundle:Product')->findAll();
+
+        return $this->render('default/index.html.twig', array(
+            'products' => $products,
+        ));
+    }
+}
