@@ -21,36 +21,28 @@ nav {
 }
 
 body {
-	background-color: #e8eef7;
+	background-color: #264370;
 }
 
-#main {
-    max-width:100%;
-    min-height:100%;
-    margin:0 auto;
-    position:relative;
-}
-
-footer {
-    
-    position:absolute;
+footer { 
+    margin-top: 50px;
     bottom:0;
     width:100%;
     right: 0px;
     left: 0px;
     background-color: #264370;
-    text-align: center;
+    text-align: right;
     color: white;
 }
 
 li{
 	list-style: none;
 }
+
 h1 {
     padding-top: 2%;
 }
 
-/* TODO ! JB, 11/09/17 : Create class="actionLink" for action a*/
 /* unvisited link */
 .actionLink:link {
     color: black;
@@ -102,6 +94,15 @@ h1 {
     font-weight: bold;
     text-decoration: none;
 }
+
+/* Main pages  */
+#main {
+    max-width:100%;
+    min-height:100%;
+    margin:0 auto;
+    background-color: #e8eef7;
+}
+
 .active{
 	font-weight: bold;
 	text-decoration: none;
@@ -140,12 +141,26 @@ h1 {
 	text-align: center;
 }
 
+.actionButton {
+   background-color: #419ea3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
 
 /*FOOTER*/
 .social {
   position: absolute;
   width: 100%;
-  top: 30%;
+  top: 40%;
   text-align: center;
   transform: translateY(-50%);
 }
@@ -171,6 +186,7 @@ h1 {
   display: block;
   position: absolute;
   text-align: center;
+  font-size: 50px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

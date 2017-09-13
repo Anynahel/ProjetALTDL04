@@ -1,68 +1,51 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>Votre profil</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ user.address }}</td>
-            </tr>
-            <tr>
-                <th>Additionaladdress</th>
-                <td>{{ user.additionalAddress }}</td>
-            </tr>
-            <tr>
-                <th>Zipcode</th>
-                <td>{{ user.zipCode }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ user.country }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Deactivationdate</th>
-                <td>{{ user.deactivationDate }}</td>
-            </tr>
-            <tr>
-                <th>Iduser</th>
-                <td>{{ user.idUser }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'idUser': user.idUser }) }}">Edit</a>
-        </li>
-        <li>
+                <span>Prénom</span>
+                <p>{{ user.firstname }}</p>
+
+                <span>Nom de famille</span>
+                <p>{{ user.lastname }}</p>
+
+                <span>Adresse</span>
+                <p>{{ user.address }}</p>
+
+                 <span>Complément d'adresse</span>
+                <p>{{ user.additionalAddress }}</p>
+
+                <span>Code postal</span>
+                <p>{{ user.zipCode }}</p>
+
+                 <span>Ville</span>
+                <p>{{ user.city }}</p>
+
+                <span>Pays</span>
+                <p>{{ user.country }}</p>
+
+                <span>Email</span>
+                <p>{{ user.email }}</p>
+
+                <span>Mot de passe</span>
+                <p>{{ user.password }}</p>
+
+<ul>
+<li>
+            <a class="actionLink" href="{{ path('user_edit', { 'idUser': user.idUser }) }}">
+            <i class="fa fa-pencil>Éditer</i>
+            </a>
+            </li>
+       <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="actionLink actionButton" type="submit"><i class="fa fa-trash"> Supprimer</i></input>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            </li>
+            </ul>
+
+</div>
+
+   
 {% endblock %}

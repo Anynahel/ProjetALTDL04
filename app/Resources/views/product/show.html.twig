@@ -30,28 +30,33 @@
     <ul>
     {% if product.isTutorial %}
     {% else %}
-    {%if chapters|length > 0%}<h3>Chapitres du cours :</h3>{% endif %}
+        {%if chapters|length > 0 %}
+            <h3>Chapitres du cours :</h3>
+        {% endif %}
+
         {% for chapter in chapters %}   
             <p class="chapter">
                 <a class="actionLink" href="{{ path('chapter_show', {'idChapter': chapter.idChapter}) }}">
                    {{ chapter.ChapterNumber }} - {{ chapter.ChapterTitle }}</a>
             </p>
-        {% endfor %}   
+        {% endfor %}
+
         <li>
-            <a class="actionLink" href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}"><i class="fa fa-plus"></i></a>
+            <a class="actionLink actionButton" href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}"><i class="fa fa-plus"></i>Nouveau chapitre</a>
         </li> 
 
-        {% endif %}
+    {% endif %}
         <li>
             <a class="actionLink" href="{{ path('product_index') }}">Retour</a>
         </li>
         <li>
-            <a class="actionLink" href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}"><i class="fa fa-pencil"></i></a>
+            <a class="actionLink actionButton" href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}"><i class="fa fa-pencil"></i>Éditer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input class="actionLink" type="submit"><i class="fa fa-trash"></i></input>
+                <input class="actionLink actionButton" type="submit"><i class="fa fa-trash"></i>Supprimer</input>
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    </div>
 {% endblock %}

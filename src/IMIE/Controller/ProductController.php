@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Product controller.
@@ -22,7 +23,7 @@ class ProductController extends Controller
 {
     /**
      * List all product entities.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/", name="product_index")
      * @Method("GET")
      */
@@ -39,7 +40,7 @@ class ProductController extends Controller
 
     /**
      * Creates a new product entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="product_new")
      * @Method({"GET", "POST"})
      */
@@ -90,7 +91,7 @@ class ProductController extends Controller
 
     /**
      * Finds and displays a product entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idProduct}", name="product_show")
      * @Method("GET")
      */
@@ -112,7 +113,7 @@ class ProductController extends Controller
 
     /**
      * Displays a form to edit an existing product entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idProduct}/edit", name="product_edit")
      * @Method({"GET", "POST"})
      */
@@ -153,7 +154,7 @@ class ProductController extends Controller
 
     /**
      * Deletes a product entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idProduct}", name="product_delete")
      * @Method("DELETE")
      */

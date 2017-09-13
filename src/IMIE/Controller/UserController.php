@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * User controller.
@@ -21,8 +22,7 @@ class UserController extends Controller
 {
     /**
      * Lists all user entities.
-     *
-     * @Route("/", name="user_index")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Method("GET")
      */
     public function indexAction()
@@ -38,7 +38,7 @@ class UserController extends Controller
 
     /**
      * Creates a new user entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="user_new")
      * @Method({"GET", "POST"})
      */
@@ -46,15 +46,33 @@ class UserController extends Controller
     {
         $user = new User();
         $form = $this->createFormBuilder($user)
-                ->add('firstname', TextType::class)
-                ->add('lastname', TextType::class)
-                ->add('address', TextType::class)
-                ->add('additional_address', TextType::class)
-                ->add('zip_code', TextType::class)
-                ->add('city', TextType::class)
-                ->add('country', TextType::class)
-                ->add('email', EmailType::class)
-                ->add('password', PasswordType::class)
+                ->add('firstname', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Prénom'))
+                ->add('lastname', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Nom de famille'))
+                ->add('address', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Adresse'))
+                ->add('additional_address', TextType::class, array(
+                    'required' =>false,
+                    'label' => 'Complément d\'adresse'))
+                ->add('zip_code', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Code Postal'))
+                ->add('city', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Ville'))
+                ->add('country', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Pays'))
+                ->add('email', EmailType::class, array(
+                    'required' =>true,
+                    'label' => 'Email'))
+                ->add('password', PasswordType::class, array(
+                    'required' =>true,
+                    'label' => 'Mot de passe'))
                 ->getForm();
         $form->handleRequest($request);
 
@@ -77,7 +95,7 @@ class UserController extends Controller
 
     /**
      * Finds and displays a user entity.
-     *
+     * @Security("has_role('ROLE_USER')")
      * @Route("/{idUser}", name="user_show")
      * @Method("GET")
      */
@@ -93,7 +111,7 @@ class UserController extends Controller
 
     /**
      * Displays a form to edit an existing user entity.
-     *
+     * @Security("has_role('ROLE_USER')")
      * @Route("/{idUser}/edit", name="user_edit")
      * @Method({"GET", "POST"})
      */
@@ -101,15 +119,33 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createFormBuilder($user)
-                ->add('firstname', TextType::class)
-                ->add('lastname', TextType::class)
-                ->add('address', TextType::class)
-                ->add('additional_address', TextType::class)
-                ->add('zip_code', TextType::class)
-                ->add('city', TextType::class)
-                ->add('country', TextType::class)
-                ->add('email', EmailType::class)
-                ->add('password', PasswordType::class)
+                ->add('firstname', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Prénom'))
+                ->add('lastname', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Nom de famille'))
+                ->add('address', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Adresse'))
+                ->add('additional_address', TextType::class, array(
+                    'required' =>false,
+                    'label' => 'Complément d\'adresse'))
+                ->add('zip_code', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Code Postal'))
+                ->add('city', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Ville'))
+                ->add('country', TextType::class, array(
+                    'required' =>true,
+                    'label' => 'Pays'))
+                ->add('email', EmailType::class, array(
+                    'required' =>true,
+                    'label' => 'Email'))
+                ->add('password', PasswordType::class, array(
+                    'required' =>true,
+                    'label' => 'Mot de passe'))
                 ->getForm();
         $editForm->handleRequest($request);
 
@@ -128,7 +164,7 @@ class UserController extends Controller
 
     /**
      * Deletes a user entity.
-     *
+     * @Security("has_role('ROLE_USER')")
      * @Route("/{idUser}", name="user_delete")
      * @Method("DELETE")
      */
@@ -139,11 +175,15 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
+            $dateToday = date("dd/MM/YYYY");
+            $user->setDeactivationDate($dateToday);
+            var_dump($dateToday);die();
+
+            // $em->remove($user);
             $em->flush();
         }
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('accueil');
     }
 
     /**

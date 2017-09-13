@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 /**
  * Chapter controller.
@@ -21,7 +23,7 @@ class ChapterController extends Controller
 {
     /**
      * Lists all chapter entities.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/", name="chapter_index")
      * @Method("GET")
      */
@@ -38,7 +40,7 @@ class ChapterController extends Controller
 
     /**
      * Creates a new chapter entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="chapter_new")
      * @Method({"GET", "POST"})
      */
@@ -90,7 +92,7 @@ class ChapterController extends Controller
 
     /**
      * Finds and displays a chapter entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idChapter}", name="chapter_show")
      * @Method("GET")
      */
@@ -106,7 +108,7 @@ class ChapterController extends Controller
 
     /**
      * Displays a form to edit an existing chapter entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idChapter}/edit", name="chapter_edit")
      * @Method({"GET", "POST"})
      */
@@ -141,7 +143,7 @@ class ChapterController extends Controller
 
     /**
      * Deletes a chapter entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idChapter}", name="chapter_delete")
      * @Method("DELETE")
      */
