@@ -56,10 +56,14 @@
         </header>
 
         <div id="main">
-
-            {% block body %}{% endblock %}
-
-            {#{% if is_granted('ROLE_USER')%}#}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    {% block body %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+                {#{% if is_granted('ROLE_USER')%}#}
             <div class="row">
                 <div class="col-xs-12">
                     <form action="/your-server-side-code" method="POST">
@@ -77,8 +81,7 @@
                     </form>
                 </div>
             </div>
-
-        {#{% endif %}#}
+                {#{% endif %}#}
 
     </div>
 
