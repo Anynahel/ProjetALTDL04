@@ -11,16 +11,16 @@
         </br>
         <ul>
             <li>
-                <a class="actionLink" href="{{ path('chapter_index') }}">Retour</a>
+                <a class="actionLink actionButton" href="{{ path('chapter_index') }}">Retour</a>
             </li>
             <li>
-                <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}"><i class="fa fa-pencil"></i></a>
+                <a class="actionLink actionButton" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}"><i class="fa fa-pencil">Éditer</i></a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
-                <input class="actionLink" type="submit"><i class="fa fa-trash"></input>
+                <input class="actionLink actionButton" type="submit"><i class="fa fa-trash">Supprimer</input>
                     {{ form_end(delete_form) }}
             </li>
         </ul>
     </div>
-    {% endblock %}
+{% endblock %}

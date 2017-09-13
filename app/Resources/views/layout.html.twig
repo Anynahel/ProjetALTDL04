@@ -54,7 +54,7 @@
                     {% if is_granted('ROLE_ADMIN') %}
                     {% elseif is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                        <a class="nav-link navLink disabled" href="{{ path('user_show', {'idUser': 1}) }}">Mon compte</a>
+                        <a class="nav-link navLink disabled" href="{{ path('user_show', {'idUser': 5}) }}">Mon compte</a>
                     </li>
                     {% endif %}
                 </ul>
