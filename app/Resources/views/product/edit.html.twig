@@ -1,9 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Édition du produit</h1>
+    <h1>Édition du cours <strong>{{product.title }}</strong></h1>
 <div class="container">
     {{ form_start(edit_form) }}
+    <img src="{{ asset('uploads/')}}{{ product.image }}" width='200' height='100' />
         {{ form_widget(edit_form) }}
         <input class="actionLink" type="submit" value="Éditer" />
     {{ form_end(edit_form) }}
