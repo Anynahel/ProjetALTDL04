@@ -27,6 +27,7 @@ class DefaultController extends Controller
 
         return $this->render('default/index.html.twig', array(
             'lastProducts' => $lastProducts,
+            'title' => 'Récapitulatif des cours les plus récents',
         ));
     }
 
@@ -39,8 +40,9 @@ class DefaultController extends Controller
         $expression = $request->query->get("expression");
         $products =  $this->getDoctrine()->getRepository("IMIEBundle:Product")->findProduct($expression);
         
-        return $this->render('product/index.html.twig', [
-                    "products" => $products
+        return $this->render('default/index.html.twig', [
+                    "lastProducts" => $products,
+                    'title' => 'Résultats de la recherche'
         ]); 
     }
 }

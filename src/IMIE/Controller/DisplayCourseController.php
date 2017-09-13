@@ -18,23 +18,45 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class DisplayCourseController extends Controller
 {
+
+    /**
+     * List all product entities.
+     *
+     * @Route("/", name="display_courses")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {       
+               $em = $this->getDoctrine()->getManager();
+
+        $products = $em->getRepository('IMIEBundle:Product')->findAll();
+
+        return $this->render('course/displayCourse.html.twig', array(
+                    'products' => $products,
+                    'isCoursesList' => true,
+        ));
+    }
+
+
+
     /**
      * List all product entities.
      *
      * @Route("/{idProduct}", name="display_course")
      * @Method("GET")
      */
-    public function indexAction(Product $product)
+    public function showAction(Product $products)
     {       
         $em = $this->getDoctrine()->getManager();
         $chapters = $em->getRepository('IMIEBundle:Chapter')->findBy(
-                array('Product' => $product->getIdProduct()
+                array('Product' => $products->getIdProduct()
                 )
         );
 
         return $this->render('course/displayCourse.html.twig', array(
-            'product' => $product,
+            'products' => $products,
             'chapters' => $chapters,
+            'isCoursesList' => false,
         ));
     }
 

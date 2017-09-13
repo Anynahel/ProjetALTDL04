@@ -1,1 +1,79 @@
-DISPLAY COUUUUURSE ! 
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{% if isCoursesList %}
+	<h1>Liste des formations</h1>
+<div class="container">
+		{% for product in products %}
+			<div class="courseImageTitle">
+    			<img src="{{ asset('uploads/')}}{{ products.image }}"/>
+    			<h2><a class="actionLink" href="{{ path('display_course', { 'idProduct': product.idProduct }) }}">{{ product.title }}</a></h2>
+    			
+			</div>
+
+			<br>
+			<div class="summaryWrapper">
+			{{product.summary}}
+			</div>
+			
+			<br>
+    <div class="row">
+        <div class="col-xs-12">
+            <form action="/your-server-side-code" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_TNNrshUHsHUrIfOTaouoRwVW"
+                        data-amount="4700"
+                        data-name="Paiement par CB"
+                        data-description="Widget"
+                        data-image="https://t4.ftcdn.net/jpg/00/29/42/63/240_F_29426307_3UVtQ4mMzW1Ubv7AZw3FnLraLMtok63d.jpg"
+                        data-locale="auto"
+                        data-zip-code="true"
+                        data-currency="eur">
+                </script>
+            </form>
+        </div>
+    </div>
+		{% endfor%}
+	{% else %}
+	<div class="courseImageTitle">
+    			<img src="{{ asset('uploads/')}}{{ products.image }}" height='100' width='100'/>
+    			<h2>{{products.title}}</h2>	
+
+			</div>
+	
+		<div>
+		{{products.summary}}
+		</div>
+
+		{% for chapter in chapters %}
+
+		<p class="chapterTitle">
+           {{ chapter.ChapterNumber }} - {{ chapter.ChapterTitle }}
+        </p>
+
+        <p>
+        	{{chapter.content}}
+        </p>
+		{% endfor %}
+    <div class="row">
+        <div class="col-xs-12">
+            <form action="/your-server-side-code" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_TNNrshUHsHUrIfOTaouoRwVW"
+                        data-amount="4700"
+                        data-name="Paiement par CB"
+                        data-description="Widget"
+                        data-image="https://t4.ftcdn.net/jpg/00/29/42/63/240_F_29426307_3UVtQ4mMzW1Ubv7AZw3FnLraLMtok63d.jpg"
+                        data-locale="auto"
+                        data-zip-code="true"
+                        data-currency="eur">
+                </script>
+            </form>
+        </div>
+    </div>
+	{% endif %}
+</div>
+
+{% endblock %}

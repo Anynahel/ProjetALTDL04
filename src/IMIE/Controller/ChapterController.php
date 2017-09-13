@@ -46,7 +46,7 @@ class ChapterController extends Controller
      */
     public function newAction(Request $request)
     {
-        if(isset($_GET['idProd']) && isset($_GET['ProdName']))
+        if(isset($_GET['idProd']))
         {
             $chapter = new Chapter();
             $form = $this->createFormBuilder($chapter)
@@ -63,7 +63,10 @@ class ChapterController extends Controller
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+
+                
                 $em = $this->getDoctrine()->getManager();
+                $chapter->setProduct($em->getRepository('IMIEBundle:Product')->find( $_GET['idProd']));
                 $em->persist($chapter);
                 $em->flush();
 

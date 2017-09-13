@@ -2,13 +2,33 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %} 
-<h1>Récapitulatif des cours les plus récents</h1>
+<h1>{{title}}</h1>
 {% for product in lastProducts %}
 
 
-<span><a class="actionLink" href="{{ path('product_show', { 'idProduct': product.idProduct }) }}">{{ product.title }}</a></span>
+<span><a class="actionLink" href="{{ path('display_course', { 'idProduct': product.idProduct }) }}"></a></span>
 </br>
 <div class="container">{{product.summary}}</div>
 
+
+ {% if is_granted('ROLE_USER')%}
+    <div class="row">
+        <div class="col-xs-12">
+            <form action="/your-server-side-code" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_TNNrshUHsHUrIfOTaouoRwVW"
+                        data-amount="4700"
+                        data-name="Paiement par CB"
+                        data-description="Widget"
+                        data-image="https://t4.ftcdn.net/jpg/00/29/42/63/240_F_29426307_3UVtQ4mMzW1Ubv7AZw3FnLraLMtok63d.jpg"
+                        data-locale="auto"
+                        data-zip-code="true"
+                        data-currency="eur">
+                </script>
+            </form>
+        </div>
+    </div>
+    {% endif %}
 {% endfor%}
 {% endblock %}

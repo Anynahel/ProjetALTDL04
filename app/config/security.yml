@@ -1,92 +1,26 @@
 security:
-    encoder:
-        Symfony\Component\Security\Core\User\User
-            algorithm: bcrypt
-
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+#        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     providers:
         in_memory:
             memory:
                 users:
-                    admin:
-                        password: test@admin
-
-
+                    user: { password: user, roles: [ 'ROLE_USER' ] }
+                    admin: { password: admin, roles: [ 'ROLE_ADMIN'] }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-
         main:
             pattern: ^/
-            provider: in_memory
+            anonymous: true
             form_login:
                 login_path: login
                 check_path: login
-            logout: true
-            anonymous: ~
-
+            logout:
+                path: logout
+#            target: logout
     access_control:
-        - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-
-
-
-#security:
-#    encoders:
-#      Symfony\Component\Security\Core\User\User: plaintext
-#    role_hierarchy:
-#      ROLE_ADMIN: [ROLE_USER]
-#    providers:
-#      chain_provider:
-#        chain:
-#          providers: [in_memory]
-#      in_memory:
-#        memory:
-#          users:
-#            admin: {password: adminpass, roles: ROLE_ADMIN}
-#    firewalls:
-#      main:
-#        pattern: /.*
-#        form_login:
-#          login_path: /login
-#          check_path: /login_check
-#          default_target_path: /book
-#        logout:
-#          path: /logout
-#          target: /book
-#        security: true
-#        anonymous: true
-#
-#
-#    access_control:
-#      - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#      - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-
-
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
-#security:
-#
-#    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-#    providers:
-#        in_memory:
-#            memory: ~
-#
-#    firewalls:
-#        # disables authentication for assets and the profiler, adapt it according to your needs
-#        dev:
-#            pattern: ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
-#
-#        main:
-#            anonymous: ~
-#            # activate different ways to authenticate
-#
-#            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-#            #http_basic: ~
-#
-#            # https://symfony.com/doc/current/security/form_login_setup.html
-#            #form_login: ~
