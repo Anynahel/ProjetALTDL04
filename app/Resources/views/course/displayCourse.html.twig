@@ -6,14 +6,16 @@
 <div class="container">
 		{% for product in products %}
 			<div class="courseImageTitle">
-    			<img src="{{ asset('uploads/')}}{{ products.image }}"/>
+             <div style="height:100px; background-image: url('{{ asset('uploads/')}}{{ product.image }}'); background-size='100%';background-repeat: no-repeat; background-position: center;"></div>
+
+    			
     			<h2><a class="actionLink" href="{{ path('display_course', { 'idProduct': product.idProduct }) }}">{{ product.title }}</a></h2>
     			
 			</div>
 
 			<br>
 			<div class="summaryWrapper">
-			{{product.summary}}
+			{{product.summary | raw}}
 			</div>
 			
 			<br>
@@ -26,7 +28,6 @@
                         data-amount="4700"
                         data-name="Paiement par CB"
                         data-description="Widget"
-                        data-image="https://t4.ftcdn.net/jpg/00/29/42/63/240_F_29426307_3UVtQ4mMzW1Ubv7AZw3FnLraLMtok63d.jpg"
                         data-locale="auto"
                         data-zip-code="true"
                         data-currency="eur">
@@ -36,14 +37,15 @@
     </div>
 		{% endfor%}
 	{% else %}
-	<div class="courseImageTitle">
-    			<img src="{{ asset('uploads/')}}{{ products.image }}" height='100' width='100'/>
+		<div class="courseImageTitle">
+    			 <div style="height:100px; background-image: url('{{ asset('uploads/')}}{{ products.image }}'); background-size='100%';background-repeat: no-repeat; background-position: center;"></div>
     			<h2>{{products.title}}</h2>	
-
-			</div>
-	
+		</div>
+	{%if products.isTutorial %}
+	<p>Ce cours est un tutoriel, vous avez juste à regarder la vidéo explicative ! Si vous souhaitez obtenir le code source, celui-ci est disponible à l'achat au bas de la page.</p>
+	{% else %}
 		<div>
-		{{products.summary}}
+		{{products.summary | raw}}
 		</div>
 
 		{% for chapter in chapters %}
@@ -53,7 +55,7 @@
         </p>
 
         <p>
-        	{{chapter.content}}
+        	{{chapter.content | raw}}
         </p>
 		{% endfor %}
     <div class="row">
@@ -65,7 +67,6 @@
                         data-amount="4700"
                         data-name="Paiement par CB"
                         data-description="Widget"
-                        data-image="https://t4.ftcdn.net/jpg/00/29/42/63/240_F_29426307_3UVtQ4mMzW1Ubv7AZw3FnLraLMtok63d.jpg"
                         data-locale="auto"
                         data-zip-code="true"
                         data-currency="eur">
@@ -73,6 +74,7 @@
             </form>
         </div>
     </div>
+	{% endif %}
 	{% endif %}
 </div>
 

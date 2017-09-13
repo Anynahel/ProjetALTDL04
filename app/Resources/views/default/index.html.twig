@@ -6,12 +6,12 @@
 {% for product in lastProducts %}
 
 
-<span><a class="actionLink" href="{{ path('display_course', { 'idProduct': product.idProduct }) }}"></a></span>
+<span>{{ product.title }}</span>
 </br>
-<div class="container">{{product.summary}}</div>
+<div class="container">{{product.summary | raw }}</div>
+<a class="actionLink" href="{{ path('display_course', { 'idProduct': product.idProduct }) }}"></br>En savoir plus</a>
 
 
- {% if is_granted('ROLE_USER')%}
     <div class="row">
         <div class="col-xs-12">
             <form action="/your-server-side-code" method="POST">
@@ -21,7 +21,6 @@
                         data-amount="4700"
                         data-name="Paiement par CB"
                         data-description="Widget"
-                        data-image="https://t4.ftcdn.net/jpg/00/29/42/63/240_F_29426307_3UVtQ4mMzW1Ubv7AZw3FnLraLMtok63d.jpg"
                         data-locale="auto"
                         data-zip-code="true"
                         data-currency="eur">
@@ -29,6 +28,5 @@
             </form>
         </div>
     </div>
-    {% endif %}
 {% endfor%}
 {% endblock %}

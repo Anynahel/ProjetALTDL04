@@ -1,62 +1,66 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Détail du produit</h1>
 
-<div class="container">
+    <h1>Détail de la formation</h1>
+
+    <div class="container">
 
 
-                <span>Titre</span>
-                <p>{{ product.title }}</p>
 
-</br>
-                <span>Image</span>
-                <img src="{{ asset('uploads/')}}{{ product.image }}" height='100' width='100'/>
+        <h1>{{ product.title }}</h1>
 
-</br>
-<span>Sommaire</span>        
-    <div class="IsFromCKEditor">{{ product.summary }}</div>
+        </br>
+        <div style="height:100px; background-image: url('{{ asset('uploads/')}}{{ product.image }}'); background-size='100%';background-repeat: no-repeat; background-position: center;"></div>
 
-</br>
-    <span>Mots clés</span>
-    <p>{{ product.keywords }}</p>
+        </br>
+        <h3>Sommaire</h3>  
+        {{ product.summary | raw }}
 
-</br>
-    <span>Tutoriel</span>
-    <p>{% if product.isTutorial %}Oui{% else %}Non{% endif %}</p>
+        </br>
+        <h3>Mots clés</h3>
+        <p>{{ product.keywords }}</p>
 
-</br>
+        </br>
 
-    <ul>
-    {% if product.isTutorial %}
-    {% else %}
-        {%if chapters|length > 0 %}
-            <h3>Chapitres du cours :</h3>
-        {% endif %}
 
-        {% for chapter in chapters %}   
-            <p class="chapter">
-                <a class="actionLink" href="{{ path('chapter_show', {'idChapter': chapter.idChapter}) }}">
-                   {{ chapter.ChapterNumber }} - {{ chapter.ChapterTitle }}</a>
-            </p>
-        {% endfor %}
+        <div>
+            {% if product.isTutorial %}
+                <h3>Tutoriel (gratuit)</h3>
+            {% else %}
+                <h3>Cours payant</h3>
+                <p>Cours accessible par abonnement ou achat à l'unité</p>
+            {% endif %}
+        </div>
 
-        <li>
-            <a class="actionLink actionButton" href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}"><i class="fa fa-plus"></i>Nouveau chapitre</a>
-        </li> 
+        </br>
 
-    {% endif %}
-        <li>
-            <a class="actionLink" href="{{ path('product_index') }}">Retour</a>
-        </li>
-        <li>
-            <a class="actionLink actionButton" href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}"><i class="fa fa-pencil"></i>Éditer</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input class="actionLink actionButton" type="submit"><i class="fa fa-trash"></i>Supprimer</input>
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <ul>
+            {% if product.isTutorial %}
+            {% else %}
+                {%if chapters|length > 0%}<h3>Chapitres du cours :</h3>{% endif %}
+                {% for chapter in chapters %}   
+                    <p class="chapter">
+                        <a class="actionLink" href="{{ path('chapter_show', {'idChapter': chapter.idChapter}) }}">
+                            {{ chapter.ChapterNumber }} - {{ chapter.ChapterTitle }}</a>
+                    </p>
+                {% endfor %}   
+                <li>
+                    <a class="actionLink" href="{{ path('chapter_new',{'idProd': product.idProduct , 'ProdName': product.title}) }}"><i class="fa fa-plus"></i></a>
+                </li> 
+
+            {% endif %}
+            <li>
+                <a class="actionLink actionButton" href="{{ path('product_index') }}">Retour</a>
+            </li>
+            <li>
+                <a class="actionLink actionButton" href="{{ path('product_edit', { 'idProduct': product.idProduct }) }}"><i class="fa fa-pencil">Éditer</i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input class="actionLink actionButton" type="submit"><i class="fa fa-trash">Supprimer</i></input>
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
     </div>
-{% endblock %}
+    {% endblock %}

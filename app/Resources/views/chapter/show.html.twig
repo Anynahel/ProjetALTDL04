@@ -3,28 +3,24 @@
 {% block body %}
     <h1>Chapitre</h1>
 
-<div class="container">
-<span>Numéro du chapitre</span>
-                <p>{{ chapter.chapterNumber }}</p>
-</br>
+    <div class="container">
+        <h2>{{ chapter.chapterNumber }}. {{ chapter.chapterTitle }}</h2>
+        </br>
 
-                <span>Titre</span>
-                <p>{{ chapter.chapterTitle }}</p>
-</br>
-                <span>Contenu</span>
-                <p>{{ chapter.content }}</p>
-            </br>
-    <ul>
-        <li>
-            <a class="actionLink" href="{{ path('chapter_index') }}">Retour</a>
-        </li>
-        <li>
-            <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}"><i class="fa fa-pencil"></i></a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
+        <p>{{ chapter.content |raw }}</p>
+        </br>
+        <ul>
+            <li>
+                <a class="actionLink" href="{{ path('chapter_index') }}">Retour</a>
+            </li>
+            <li>
+                <a class="actionLink" href="{{ path('chapter_edit', { 'idChapter': chapter.idChapter }) }}"><i class="fa fa-pencil"></i></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
                 <input class="actionLink" type="submit"><i class="fa fa-trash"></input>
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+                    {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </div>
+    {% endblock %}
